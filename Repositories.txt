@@ -1,0 +1,15 @@
+public interface BookRepository extends JpaRepository<BookModel, UUID> {
+
+    BookModel findBookModelByTitle(String title);
+    
+    @Query(value = "SELECT * FROM tb_book WHERE publisher_id = :id", nativeQuery = true)
+    List<BookModel> findBooksByPublisherId(@Param("id") UUID id);
+
+}
+
+a implementação da Interface JpaRepository permite que façamos consultas no banco de dados.
+Para consultas mais simples como buscar um livro pelo seu nome podemos utilizar metodos que são mais simples
+como o findBookModelByTitle(String title).
+Para realizar consultas mais complexas é necessário inicialiazar uma querry com a anotação @Querry
+
+@Query(value = "SELECT * FROM tb_book WHERE publisher_id = :id", nativeQuery = true)

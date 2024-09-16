@@ -1,0 +1,39 @@
+@OneToMany, indica que uma tabela possui varias outras, por exemplo: uma editora possui varios livros.
+@ManyToOne, indica que varias tabelas pertencem a uma outra, por exemplo: varios livros possuem uma unica editora.
+
+@JoinColumn, indica qual sera a chave estrangeira para a tabela
+
+O relacionamento @OneToMany possui parametros, um destes paramêtros é o mapingBy, que define
+como iremos filtrar as entidades do outro lado do relacionamento, passando de parametro algum,
+atributo da tabela.
+
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY). Evita que ocorra erros na serilização da consulta.
+
+Em um relacionamento muitos para muitos (@ManyToMany) é necessário criar uma tabela auxiliar para armazenar os valores das chaves estrangeiras
+
+
+@ManyToMany(fetch = FetchType.LAZY)
+@JoinTable(
+	name = "TB_BOOKAUTHOR",
+	joinCollums = @JoinCollumn(name = "author_id"),
+	inverseJoinCollums = @JoinCollumn(name = "book_id")
+)
+private Set<AuthorModel> authorModel = new HashTable();
+
+
+@ManyToMany(mappedBy = "authorsModel",fetch = FetchType.LAZY)
+@JoinTable(
+	name = "TB_BOOKAUTHOR",
+	joinColumn = @JoinColumn(name = "author_id"),
+	reverseJoinColumn = @JoinColumn(name = "book_id")
+)
+private Set<BookModel> books = new HashTable<>();
+
+@ManyToMany
+private Set<AuthorModel> authorModel = new HashTable<>();
+
+
+
+
+
+
