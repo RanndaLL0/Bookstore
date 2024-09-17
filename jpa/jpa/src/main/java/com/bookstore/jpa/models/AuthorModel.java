@@ -20,6 +20,7 @@ public class AuthorModel implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    //relação com os livros.
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany(mappedBy = "authorModels", fetch = FetchType.LAZY)
     private Set<BookModel> books = new HashSet<>();

@@ -23,6 +23,7 @@ public class BookModel implements Serializable {
     @JoinColumn(name = "publisher_id")
     private PublisherModel publisherModel;
 
+    //relação com a tabela de autores
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ManyToMany
     @JoinTable(
